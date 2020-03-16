@@ -13,4 +13,6 @@ def create(name: str):
     """
     Create a new profile
     """
-    pass
+    return Profile.create(
+        name=name
+    )

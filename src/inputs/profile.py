@@ -20,9 +20,10 @@ class ListProfiles(Command):
         if len(profiles) == 0:
             print("No profiles are currently stored on this machine")
         else:
-            print("There are {} profiles in this machine".format(len(profiles)))
+            print("There are {} profiles in this machine:".format(len(profiles)))
             for p in profiles:
-                print("-".format(p.name))
+                print("|")
+                print(" -{}".format(p))
 
 
 class CreateProfile(Command):
@@ -40,5 +41,6 @@ class CreateProfile(Command):
         """
         Create a new profile
             - args.name - name of the profile
-        Return 
         """
+        p = profile.create(args.name)
+        print("Profile named {} successfully created".format(p.name))
