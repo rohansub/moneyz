@@ -1,5 +1,5 @@
 from src.inputs.base import BaseCommands, Command
-from src.models.profile import Profile
+import src.controllers.profile as profile
 
 class ProfileCommands(BaseCommands):
     @classmethod
@@ -15,8 +15,14 @@ class ListProfiles(Command):
         pass
 
     @classmethod
-    def run(cls, options):
-        print([p.name for p in Profile.select()])
+    def run(cls, args):
+        profiles = [p.name for p in profile.get_all()]
+        if len(profiles) == 0:
+            print("No profiles are currently stored on this machine")
+        else:
+            print("There are {} profiles in this machine".format(len(profiles)))
+            for p in profiles:
+                print("-".format(p.name))
 
 
 class CreateProfile(Command):
@@ -30,5 +36,9 @@ class CreateProfile(Command):
         )
 
     @classmethod
-    def run(cls, options):
-        pass
+    def run(cls, args):
+        """
+        Create a new profile
+            - args.name - name of the profile
+        Return 
+        """
