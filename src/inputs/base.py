@@ -11,10 +11,10 @@ class BaseCommands:
 
     @classmethod
     def setup_commands(cls, parser):
-        sub = parser.add_subparsers(dest='sub_command', required=True)
+        subparsers = parser.add_subparsers(dest='sub_command', required=True)
         for name, command in cls.commands().items():
-            sub.add_parser(name)
-            command.setup(parser)
+            sub = subparsers.add_parser(name)
+            command.setup(sub)
 
     @classmethod
     def run(cls, options):
@@ -22,8 +22,8 @@ class BaseCommands:
 
 class Command:
     @classmethod
-    def run(self, options):
+    def run(cls, options):
         pass
     @classmethod
-    def setup(self, parser):
+    def setup(cls, parser):
         pass

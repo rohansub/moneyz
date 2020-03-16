@@ -11,6 +11,6 @@ class CSVFormat(BaseModel):
     account_id_field = TextField(null=True, default=None)
 
     
-db.create_tables([CSVFormat])
+db.create_tables([CsvFormat])
 
     

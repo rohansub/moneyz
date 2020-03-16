@@ -13,8 +13,12 @@ class ListAccounts(Command):
     @classmethod
     def setup(cls, parser):
         parser.add_argument(
-            "profile", 
-            help="name of profile"
+            "--profile_name", 
+            "--profile-name",
+            "--profile", 
+            "-p",
+            help="name of the profile to list accounts for",
+            required=True,
         )
     
     @classmethod

@@ -1,10 +1,12 @@
 from src.inputs.base import BaseCommands, Command
+from src.models.profile import Profile
 
 class ProfileCommands(BaseCommands):
     @classmethod
     def commands(cls, key=None):
         return {
-            "list": ListProfiles
+            "list": ListProfiles,
+            "create": CreateProfile,
         }
 
 class ListProfiles(Command):
@@ -14,4 +16,19 @@ class ListProfiles(Command):
 
     @classmethod
     def run(cls, options):
-        print(options)
+        print([p.name for p in Profile.select()])
+
+
+class CreateProfile(Command):
+    @classmethod
+    def setup(cls, parser):
+        parser.add_argument(
+            "--name", 
+            action="store",
+            help="name of profile",
+            required=True,
+        )
+
+    @classmethod
+    def run(cls, options):
+        pass

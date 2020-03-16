@@ -13,8 +13,7 @@ COMMANDS = {
 
 # Setup argument parser
 parser = argparse.ArgumentParser()
-subparsers = parser.add_subparsers(dest='command')
-subparsers.required = True
+subparsers = parser.add_subparsers(dest='command', required=True)
 
 for name, Commands in COMMANDS.items():
     sub = subparsers.add_parser(name)
